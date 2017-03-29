@@ -69,7 +69,7 @@ public class Board {
     private boolean checkWinHorizontal(int player, int x, int y) {
         int numberOfBlocks = 0;
         int streak = 1;
-        for(int i = x+1; i < size; i++) {
+        for(int i = x+1; i < size && streak < 6; i++) {
             //Check right of current coordinate
             if(board[i][y] == player)
                 streak++;
@@ -79,7 +79,7 @@ public class Board {
             }else
                 break;
         }
-        for(int i = x-1; i >= 0; i--) {
+        for(int i = x-1; i >= 0 && streak < 6; i--) {
             //Check left of the current coordinate
             if (board[i][y] == player)
                 streak++;
@@ -89,7 +89,7 @@ public class Board {
             } else
                 break;
         }
-        if(streak > 4 || numberOfBlocks < 2)
+        if(streak > 4 && numberOfBlocks < 2)
             return true;
         else
             return false;
@@ -98,7 +98,7 @@ public class Board {
     private boolean checkWinVertical(int player, int x, int y) {
         int numberOfBlocks = 0;
         int streak = 1;
-        for(int i = y+1; i < size; i++) {
+        for(int i = y+1; i < size && streak < 6; i++) {
             //Check down from current coordinate
             if(board[x][i] == player)
                 streak++;
@@ -108,7 +108,7 @@ public class Board {
             }else
                 break;
         }
-        for(int i = y-1; i >= 0; i--) {
+        for(int i = y-1; i >= 0 && streak < 6; i--) {
             //Check up from the current coordinate
             if(board[x][i] == player)
                 streak++;
@@ -118,7 +118,6 @@ public class Board {
             }else
                 break;
         }
-        System.out.println("Blocks: " + numberOfBlocks);
         if(streak > 4 && numberOfBlocks < 2)
             return true;
         else

@@ -72,6 +72,19 @@ public class UnitTests {
     }
 
     @Test
+    public void horizontalWinInMiddleWithBlockage_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(2, 0, 0);
+        board.playPiece(1, 1, 0);
+        board.playPiece(1, 2, 0);
+        board.playPiece(1, 3, 0);
+        board.playPiece(1, 4, 0);
+        board.playPiece(1, 5, 0);
+        board.playPiece(2, 6, 0);
+        assertTrue(!board.checkWin(1,2,0));
+    }
+
+    @Test
     public void verticalWinInMiddleWithBlockage_isCorrect() throws Exception {
         Board board = new Board(10);
         board.playPiece(2, 0, 0);
@@ -81,6 +94,8 @@ public class UnitTests {
         board.playPiece(1, 0, 4);
         board.playPiece(1, 0, 5);
         board.playPiece(2, 0, 6);
-        assertTrue(!board.checkWin(1,0,3));
+        assertTrue(!board.checkWin(1,0,2));
     }
+
+
 }
