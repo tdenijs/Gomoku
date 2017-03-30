@@ -60,7 +60,8 @@ public class Board {
      */
     public boolean checkWin(int player, int x, int y) {
         if(checkWinHorizontal(player, x, y)
-                || checkWinVertical(player, x, y )){
+                || checkWinVertical(player, x, y )
+                || checkWinDiagonalDown(player, x, y)){
             return true;
         }else
             return false;
@@ -74,7 +75,7 @@ public class Board {
             if(board[i][y] == player)
                 streak++;
             else if(board[i][y] == oppositePlayer(player)) {
-                ++numberOfBlocks;
+                numberOfBlocks++;
                 break;
             }else
                 break;
@@ -84,7 +85,7 @@ public class Board {
             if (board[i][y] == player)
                 streak++;
             else if (board[i][y] == oppositePlayer(player)) {
-                ++numberOfBlocks;
+                numberOfBlocks++;
                 break;
             } else
                 break;
@@ -103,7 +104,7 @@ public class Board {
             if(board[x][i] == player)
                 streak++;
             else if(board[x][i] == oppositePlayer(player)) {
-                ++numberOfBlocks;
+                numberOfBlocks++;
                 break;
             }else
                 break;
@@ -113,7 +114,7 @@ public class Board {
             if(board[x][i] == player)
                 streak++;
             else if(board[x][i] == oppositePlayer(player)) {
-                ++numberOfBlocks;
+                numberOfBlocks++;
                 break;
             }else
                 break;
@@ -122,6 +123,42 @@ public class Board {
             return true;
         else
             return false;
+    }
+
+    //Checks diagonal DOWN as in: Backslash \
+    private boolean checkWinDiagonalDown(int player, int x, int y) {
+        int numberOfBlocks = 0;
+        int streak = 1;
+        for(int i = 1; x+i < size && y+i < size && streak < 6; i++) {
+            //Check down and right from current coordinate
+            if(board[x+i][y+i] == player)
+                streak++;
+            else if(board[x+i][y+i] == oppositePlayer(player)) {
+                numberOfBlocks++;
+                break;
+            }else
+                break;
+        }
+        for(int i = 1; x-i >= 0 && y-i >= 0 && streak < 6; i--) {
+            //Check up and left from the current coordinate
+            if(board[x-i][y-i] == player)
+                streak++;
+            else if(board[x-i][y-i] == oppositePlayer(player)) {
+                numberOfBlocks++;
+                break;
+            }else
+                break;
+        }
+        System.out.println("Streak: " + streak);
+        if(streak > 4 && numberOfBlocks < 2)
+            return true;
+        else
+            return false;
+    }
+
+    //Checks diagonal UP as in: Forward Slash /
+    private boolean checkWinDiagonalUp(int player, int x, int y) {
+        return false;
     }
 
     private void gameDraw() {

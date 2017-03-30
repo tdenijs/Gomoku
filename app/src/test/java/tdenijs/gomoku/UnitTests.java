@@ -35,7 +35,7 @@ public class UnitTests {
         board.playPiece(1, 2, 0);
         board.playPiece(1, 3, 0);
         board.playPiece(1, 4, 0);
-        assertTrue(board.checkWin(1,4,0));
+        assertTrue(board.checkWin(1,0,0));
     }
 
     @Test
@@ -69,6 +69,50 @@ public class UnitTests {
         board.playPiece(1, 0, 3);
         board.playPiece(1, 0, 4);
         assertTrue(board.checkWin(1,0,1));
+    }
+
+    @Test
+    public void diagDownWin_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(1, 0, 3);
+        board.playPiece(1, 1, 4);
+        board.playPiece(1, 2, 5);
+        board.playPiece(1, 3, 6);
+        board.playPiece(1, 4, 7);
+        assertTrue(board.checkWin(1,1,4));
+    }
+
+    @Test
+    public void diagDownWinLow_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(1, 0, 0);
+        board.playPiece(1, 1, 1);
+        board.playPiece(1, 2, 2);
+        board.playPiece(1, 3, 3);
+        board.playPiece(1, 4, 4);
+        assertTrue(board.checkWin(1,4,4));
+    }
+
+    @Test
+    public void diagDownWinHigh_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(1, 0, 3);
+        board.playPiece(1, 1, 4);
+        board.playPiece(1, 2, 5);
+        board.playPiece(1, 3, 6);
+        board.playPiece(1, 4, 7);
+        assertTrue(board.checkWin(1,4,7));
+    }
+
+    @Test
+    public void diagDownWinInMiddle_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(1, 0, 3);
+        board.playPiece(1, 1, 4);
+        board.playPiece(1, 2, 5);
+        board.playPiece(1, 3, 6);
+        board.playPiece(1, 4, 7);
+        assertTrue(board.checkWin(1,2,5));
     }
 
     @Test
