@@ -8,10 +8,6 @@ import java.util.ArrayList;
 
 public class Board {
 
-    private enum GameType {
-        STANDARD, FREESTYLE
-    }
-
     protected int[][] board; //Grid
     private int size; //The size of the board
     private int maxMoves;
@@ -242,7 +238,7 @@ public class Board {
         }
         return false;
     }
-    
+
     /**
      * Returns the opposite player of the current player
      * @param player : The current player number
