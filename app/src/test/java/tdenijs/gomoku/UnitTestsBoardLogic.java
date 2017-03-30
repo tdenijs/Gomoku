@@ -10,11 +10,7 @@ import static org.junit.Assert.assertTrue;
  */
 
 
-public class UnitTests {
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
-    }
+public class UnitTestsBoardLogic {
 
     @Test
     public void playPiece_works() throws Exception {
@@ -116,6 +112,40 @@ public class UnitTests {
     }
 
     @Test
+    public void diagDownUp_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(1, 5, 5);
+        board.playPiece(1, 6, 4);
+        board.playPiece(1, 7, 3);
+        board.playPiece(1, 8, 2);
+        board.playPiece(1, 9, 1);
+        assertTrue(board.checkWin(1,5,5));
+    }
+
+    @Test
+    public void diagUpWinLow_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(1, 5, 5);
+        board.playPiece(1, 6, 4);
+        board.playPiece(1, 7, 3);
+        board.playPiece(1, 8, 2);
+        board.playPiece(1, 9, 1);
+        assertTrue(board.checkWin(1,9,1));
+    }
+
+
+    @Test
+    public void diagUpWinInMiddle_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(1, 5, 5);
+        board.playPiece(1, 6, 4);
+        board.playPiece(1, 7, 3);
+        board.playPiece(1, 8, 2);
+        board.playPiece(1, 9, 1);
+        assertTrue(board.checkWin(1,7,3));
+    }
+
+    @Test
     public void horizontalWinInMiddleWithBlockage_isCorrect() throws Exception {
         Board board = new Board(10);
         board.playPiece(2, 0, 0);
@@ -139,6 +169,32 @@ public class UnitTests {
         board.playPiece(1, 0, 5);
         board.playPiece(2, 0, 6);
         assertTrue(!board.checkWin(1,0,2));
+    }
+
+    @Test
+    public void diagDownWinInMiddleWithBlockage_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(2, 0, 3);
+        board.playPiece(1, 1, 4);
+        board.playPiece(1, 2, 5);
+        board.playPiece(1, 3, 6);
+        board.playPiece(1, 4, 7);
+        board.playPiece(1, 5, 8);
+        board.playPiece(2, 6, 9);
+        assertTrue(!board.checkWin(1,2,5));
+    }
+
+    @Test
+    public void diagUpWinInMiddleWithBlockage_isCorrect() throws Exception {
+        Board board = new Board(10);
+        board.playPiece(2, 3, 7);
+        board.playPiece(1, 4, 6);
+        board.playPiece(1, 5, 5);
+        board.playPiece(1, 6, 4);
+        board.playPiece(1, 7, 3);
+        board.playPiece(1, 8, 2);
+        board.playPiece(2, 9, 1);
+        assertTrue(!board.checkWin(1,7,3));
     }
 
 
