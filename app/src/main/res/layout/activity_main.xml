@@ -38,7 +38,7 @@
         android:layout_below="@+id/PlayerNumText"
         android:layout_centerHorizontal="true"
         android:id="@+id/PlayerButtonGroup"
-        android:checkedButton="@+id/twoPlayerButton">
+        android:checkedButton="@+id/onePlayerButton">
 
         <RadioButton
             android:text="@string/_1_player"
@@ -64,7 +64,7 @@
         android:layout_below="@+id/BoardSizetext"
         android:layout_centerHorizontal="true"
         android:id="@+id/BoardSizeButtonGroup"
-        android:checkedButton="@+id/fifteenXButton">
+        android:checkedButton="@+id/tenXButton">
 
         <RadioButton
             android:text="@string/_10_x_10"
@@ -112,16 +112,16 @@
         android:layout_alignTop="@+id/GameStyletext"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
-        android:id="@+id/GameStyleButtonGroup"
-        android:checkedButton="@+id/ClassicStyleButton">
+        android:id="@+id/GameTypeButtonGroup"
+        android:checkedButton="@+id/StandardTypeButton">
 
         <RadioButton
             android:text="@string/standard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ClassicStyleButton"
+            android:id="@+id/StandardTypeButton"
             android:layout_weight="1"
-            android:onClick="onClassicClick" />
+            android:onClick="onStandardClick" />
 
         <RadioButton
             android:text="@string/freestyle"

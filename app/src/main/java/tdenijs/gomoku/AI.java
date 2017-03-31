@@ -15,7 +15,7 @@ public class AI {
      * @param size : The size of the board
      * @return : Returns a new Point with coordinates (x,y).
      */
-    public Point playPiece(int board[][], int size) {
+    public Point playPiece(Board board, int size) {
         Random randomGenerator = new Random();
         int randomX;
         int randomY;
@@ -25,7 +25,7 @@ public class AI {
             randomX = randomGenerator.nextInt(size);
             randomY = randomGenerator.nextInt(size);
             tries++;
-            if(board[randomX][randomY] == 0)
+            if(board.board[randomX][randomY] == 0)
                 flag = true;
         }while(flag == false && tries < 50);
 
@@ -33,7 +33,7 @@ public class AI {
             //We tried a ton and never found a valid piece. Just play in the first place we can play
             for(int i = 0; i < size; i++) {
                 for(int j = 0; j < size; j++) {
-                    if(board[i][j] == 0) {
+                    if(board.board[i][j] == 0) {
                         return new Point(i,j);
                     }
                 }

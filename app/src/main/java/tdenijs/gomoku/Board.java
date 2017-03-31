@@ -259,7 +259,7 @@ public class Board {
      * Checks if the game is a draw by having all pieces be played.
      * @return : Returns the value of the check.
      */
-    private boolean gameDraw() {
+    public boolean gameDraw() {
         if(movesMade >= maxMoves) {
             System.out.println("Game is a draw!");
             return true;

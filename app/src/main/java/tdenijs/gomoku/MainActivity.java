@@ -9,16 +9,35 @@ public class MainActivity extends AppCompatActivity {
 
     private int players;
     private int size;
-    private String style;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         players = 1;
-        size = 15;
-        style = "Standard";
+        size = 10;
+        type = "STANDARD";
         setContentView(R.layout.activity_main);
     }
+
+    public void onPlayClick(View v) {
+        Intent intent = new Intent(MainActivity.this, BoardActivity.class);
+        Bundle boardVariables = new Bundle();
+        boardVariables.putInt("size", size);
+        boardVariables.putString("gameType", type);
+        switch(players) {
+            case 1:
+                boardVariables.putString("player2", "AI");
+                break;
+            case 2:
+                boardVariables.putString("player2", "human");
+                break;
+        }
+        intent.putExtras(boardVariables);
+        startActivity(intent);
+    }
+
+
 
     public void on1PlayerClick(View v) {
         players = 1;
@@ -41,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onStandardClick(View v) {
-        style = "Standard";
+        type = "STANDARD";
     }
 
     public void onFreestyleClick(View v) {
-        style = "Freestyle";
+        type = "FREESTYLE";
     }
 
 
