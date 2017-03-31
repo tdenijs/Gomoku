@@ -1,19 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="tdenijs.gomoku.MainActivity">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/gomoku"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:id="@+id/LandingPageHeaderText" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/players"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:id="@+id/PlayerNumText"
+        android:layout_below="@+id/LandingPageHeaderText"
+        android:layout_alignEnd="@+id/PlayButton"
+        android:layout_alignRight="@id/PlayButton"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PlayerNumText"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/PlayerButtonGroup"
+        android:checkedButton="@+id/twoPlayerButton">
+
+        <RadioButton
+            android:text="@string/_1_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/onePlayerButton"
+            android:layout_weight="1"
+            android:onClick="on1PlayerClick" />
+
+        <RadioButton
+            android:text="@string/_2_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/twoPlayerButton"
+            android:layout_weight="1"
+            android:onClick="on2PlayerClick" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/BoardSizetext"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/BoardSizeButtonGroup"
+        android:checkedButton="@+id/fifteenXButton">
+
+        <RadioButton
+            android:text="@string/_10_x_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tenXButton"
+            android:layout_weight="1"
+            android:onClick="on10XClick" />
+
+        <RadioButton
+            android:text="@string/_15_x_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fifteenXButton"
+            android:layout_weight="1"
+            android:onClick="on15XClick" />
+
+        <RadioButton
+            android:text="@string/_20_x_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/twentyXButton"
+            android:layout_weight="1"
+            android:onClick="on20XClick" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_mode"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:id="@+id/GameStyletext"
+        android:layout_marginTop="96dp"
+        android:layout_below="@+id/BoardSizetext"
+        android:layout_alignStart="@+id/BoardSizetext"
+        android:layout_alignLeft="@+id/BoardSizetext"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/GameStyletext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:id="@+id/GameStyleButtonGroup"
+        android:checkedButton="@+id/ClassicStyleButton">
+
+        <RadioButton
+            android:text="@string/standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ClassicStyleButton"
+            android:layout_weight="1"
+            android:onClick="onClassicClick" />
+
+        <RadioButton
+            android:text="@string/freestyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/freestyleButton"
+            android:layout_weight="1"
+            android:onClick="onFreestyleClick" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play"
+        android:id="@+id/PlayButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onPlayClick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/board_size"
+        android:textAlignment="center"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:id="@+id/BoardSizetext"
+        android:layout_below="@+id/PlayerButtonGroup"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
