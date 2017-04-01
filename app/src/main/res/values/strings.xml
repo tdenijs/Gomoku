@@ -13,6 +13,10 @@
     <string name="standard">Standard</string>
     <string name="freestyle">Freestyle</string>
     <string name="play">Play</string>
+    <string name="resetButton">Reset</string>
+    <string name="winner">Winner: </string>
+    <string name="currentPlayer">Current Player: </string>
+    <string name="wins">White Wins: 0, Black Wins: 0, Ties: 0 </string>
 
     <string name="title_activity_board">BoardActivity</string>
 

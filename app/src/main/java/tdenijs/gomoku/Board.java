@@ -78,6 +78,7 @@ public class Board {
                 || checkWinVertical(player, x, y )
                 || checkWinDiagonalDown(player, x, y)
                 || checkWinDiagonalUp(player, x, y)){
+            movesMade = 0;
             return true;
         }else
             return false;
@@ -268,6 +269,19 @@ public class Board {
     }
 
     /**
+     * Reset the board to empty
+     */
+    public void resetBoard() {
+        for(int i = 0; i < size; i++) {
+            for(int j = 0; j < size; j++) {
+                board[i][j] = 0;
+            }
+        }
+        movesMade = 0;
+    }
+
+
+    /**
      * Prints the board to System out.
      */
     public void printBoard() {
@@ -285,6 +299,7 @@ public class Board {
             System.out.print("--");
         }
     }
+
 
 
 }
