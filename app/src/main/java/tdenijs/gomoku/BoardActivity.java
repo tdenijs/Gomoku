@@ -4,9 +4,12 @@ package tdenijs.gomoku;
  * Created by Tristan de Nijs on 3/31/17.
  */
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
+import android.util.Log;
 import android.view.View;
 import java.util.Timer;
 import android.app.Activity;
@@ -47,6 +50,14 @@ public class BoardActivity extends AppCompatActivity{
         setContentView(R.layout.activity_board);
         Bundle extras = getIntent().getExtras();
         size = extras.getInt("size");
+        ai = new AI();
+        board = new Board(size, typeEnum);
+        boardView = new ImageView[size][size];
+        context = this;
+        drawing[0] = ResourcesCompat.getDrawable(getResources(), R.drawable.game_box2, null);
+        drawing[1] = ResourcesCompat.getDrawable(getResources(), R.drawable.whitepiece, null);
+        drawing[2] = ResourcesCompat.getDrawable(getResources(), R.drawable.blackpiece, null);
+
         typeString = extras.getString("gameType");
         if(typeString.equals("FREESTYLE")) {
             typeEnum = GameType.FREESTYLE;
@@ -59,31 +70,24 @@ public class BoardActivity extends AppCompatActivity{
         }else if(player2Type.equals("human")){
             //We have a 2 player game
         }
-    }
 
-    public void initialize() {
-        ai = new AI();
-
-        board = new Board(size, typeEnum);
-        boardView = new ImageView[size][size];
-        loadDrawings();
+        LinearLayout boardL = (LinearLayout) findViewById(R.id.Board);
+        boardL.setBackgroundColor(Color.BLACK);
+        boardL.setVisibility(View.VISIBLE);
+        //boardL.setBackgroundDrawable(drawing[0]);
         drawBoard();
-
     }
 
-    private void loadDrawings() {
-        drawing[0] = ContextCompat.getDrawable(context, R.drawable.game_box2);
-        drawing[1] = ContextCompat.getDrawable(context, R.drawable.whitepiece);
-        drawing[0] = ContextCompat.getDrawable(context, R.drawable.blackpiece);
-    }
 
     private void drawBoard() {
         DisplayMetrics dis = getResources().getDisplayMetrics();
         int screenWidth = dis.widthPixels - 100;
-        int cellSize = Math.round(screenWidth / size);
+        int cellWidth = Math.round(screenWidth / size);
+        context = this;
 
-        LinearLayout.LayoutParams singleCellDimensions = new LinearLayout.LayoutParams(cellSize, cellSize);
-        LinearLayout.LayoutParams singleRowDimensions = new LinearLayout.LayoutParams(cellSize * size, cellSize);
+        LinearLayout.LayoutParams cellSize = new LinearLayout.LayoutParams(cellWidth, cellWidth);
+        LinearLayout.LayoutParams rowSize = new LinearLayout.LayoutParams(cellWidth * size, cellWidth);
+        LinearLayout boardL = (LinearLayout) findViewById(R.id.Board);
 
         //Create cells
         for(int i = 0; i < size; i++) {
@@ -101,12 +105,15 @@ public class BoardActivity extends AppCompatActivity{
                         playPiece(x,y);
                     }
                 });
+                row.addView(boardView[i][j], cellSize);
             }
+            boardL.addView(row, rowSize);
         }
     }
 
 
     private void playPiece(int x, int y) {
+        currentPlayer = 2;
         boardView[xPos][yPos].setImageDrawable(drawing[currentPlayer]);
         board.playPiece(currentPlayer, xPos, yPos);
         if(board.checkWin(currentPlayer, xPos, yPos)) {
