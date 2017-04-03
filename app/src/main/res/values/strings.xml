@@ -14,7 +14,7 @@
     <string name="freestyle">Freestyle</string>
     <string name="play">Play</string>
     <string name="resetButton">Reset</string>
-    <string name="winner">Winner: </string>
+    <string name="winner"></string>
     <string name="currentPlayer">Current Player: </string>
     <string name="wins">White Wins: 0, Black Wins: 0, Ties: 0 </string>
 

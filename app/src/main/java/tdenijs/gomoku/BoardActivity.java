@@ -34,7 +34,6 @@ public class BoardActivity extends AppCompatActivity{
     private Context context;
     private int currentPlayer = 1;
     private boolean gameIsOver = false;
-    //private Timer[] timers = new Timer[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +74,7 @@ public class BoardActivity extends AppCompatActivity{
 
     private void drawBoard() {
         DisplayMetrics dis = getResources().getDisplayMetrics();
-        int screenWidth = dis.widthPixels - 100;
-        int cellWidth = Math.round(screenWidth / size);
+        int cellWidth = Math.round(dis.widthPixels / size);
         context = this;
 
         LinearLayout.LayoutParams cellSize = new LinearLayout.LayoutParams(cellWidth, cellWidth);
@@ -136,6 +134,11 @@ public class BoardActivity extends AppCompatActivity{
                 playerWin();
                 return;
             }
+            if(board.gameDraw()) {
+                //The game is a draw!
+                gameDraw();
+                return;
+            }
         }
 
         swapCurrentPlayer();
@@ -190,6 +193,8 @@ public class BoardActivity extends AppCompatActivity{
     }
 
     public void onResetClick(View v) {
+        TextView t = (TextView) findViewById(R.id.winner);
+        t.setText("");
         board.resetBoard();
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
