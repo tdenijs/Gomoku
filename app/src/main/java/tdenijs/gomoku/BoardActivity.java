@@ -57,7 +57,7 @@ public class BoardActivity extends AppCompatActivity{
             typeEnum = GameType.STANDARD;
         }
         size = extras.getInt("size");
-        ai = new AI();
+        ai = new SmartAI(2);
         board = new Board(size, typeEnum);
         boardView = new ImageView[size][size];
         context = this;

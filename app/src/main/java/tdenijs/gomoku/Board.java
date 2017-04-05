@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Board {
 
     protected int[][] board; //Grid
-    private int size; //The size of the board
+    protected int size; //The size of the board
     private int maxMoves;
     private int movesMade; //How many moves are made
     private GameType gType;

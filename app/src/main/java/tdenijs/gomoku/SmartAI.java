@@ -9,7 +9,6 @@ import java.util.Random;
 
 public class SmartAI extends AI {
 
-    private int playerNumber;
 
     public SmartAI(int playerNumber) {
         this.playerNumber = playerNumber;
@@ -22,17 +21,31 @@ public class SmartAI extends AI {
      * @return
      */
     public Point playPiece(Board board, int size) {
+
+        //There is a 5/100 or 5% chance that the AI is stupid and does a random move
+        //Think of this as it rolled a critical fail (Natural 1) and messed up horribly
+        //Possible addition for easier AI
+        //if(criticalFail() == true) {
+        //  super.playPiece(board,size);
+        //}
+
+        AIBoard aiboard = new AIBoard(board);
+        aiboard.buildStreaks();
+        return aiboard.findPlay(playerNumber);
+    }
+
+    /**
+     * Chance at critical fail and it does a completely RANDOM move from the super class
+     * @return true if critical fail, false if not critical fail.
+     */
+    public boolean criticalFail() {
         Random randomGenerator = new Random();
         int randomChance;
         randomChance = randomGenerator.nextInt(100);
 
-        //There is a 5/100 or 5% chance that the AI is stupid and does a random move
-        //Think of this as it rolled a critical fail (Natural 1) and messed up horribly
         if(randomChance < 5) {
-            return super.playPiece(board, size);
-        }
-        //Object [] move = minimax.mmab(board, 1, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
-        //return (Point) move[1];
-        return super.playPiece(board,size);
+            return true;
+        }else
+            return false;
     }
 }

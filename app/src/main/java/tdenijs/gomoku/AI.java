@@ -9,6 +9,16 @@ import java.util.Random;
 
 public class AI {
 
+    protected int playerNumber;
+
+    public AI() {
+        this.playerNumber = 1;
+    }
+
+    public AI(int playerNumber) {
+        this.playerNumber = playerNumber;
+    }
+
     /**
      * Finds a place to play a piece.
      * @param board : The board that we need to play on.
